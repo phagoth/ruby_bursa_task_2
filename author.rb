@@ -8,7 +8,6 @@ class Author
   end
 
   def can_meet? other_author
-    puts other_author
     lifeOfFirst = (year_of_birth..year_of_death)
     lifeOfSecond = (other_author.year_of_birth..other_author.year_of_death)
     return (lifeOfFirst.member?(other_author.year_of_birth) or lifeOfFirst.member?(other_author.year_of_death) or lifeOfSecond.member?(year_of_birth) or lifeOfSecond.member?(year_of_death))
