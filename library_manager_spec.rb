@@ -13,7 +13,11 @@ describe LibraryManager do
   let(:leo_tolstoy) { Author.new(1828, 1910, 'Leo Tolstoy' ) }
   let(:oscar_wilde) { Author.new(1854, 1900, 'Oscar Wilde') }
   let(:war_and_peace) { PublishedBook.new(leo_tolstoy, 'War and Peace', 1400, 3280, 1996) }
+<<<<<<< HEAD:ligrary_manager_spec.rb
   let(:ivan_testenko) { ReaderWithBook.new('Ivan Testenko', 16, war_and_peace, 328, 1922) }
+=======
+  let(:ivan_testenko) { ReaderWithBook.new('Ivan Testenko', 16, war_and_peace, 328) }
+>>>>>>> upstream/master:library_manager_spec.rb
   let(:manager) { LibraryManager.new(ivan_testenko, (DateTime.now.new_offset(0) - 2.days)) }
 
   it 'should count penalty' do

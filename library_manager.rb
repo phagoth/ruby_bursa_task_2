@@ -31,6 +31,7 @@ class LibraryManager
     return (penaltyHours / 24).round
   end
 
+<<<<<<< HEAD
   def transliterate
     translit = reader_with_book.book.author
     ukrLetters = ['А', 'а', 'Б', 'б', 'В', 'в', 'Г', 'г', 'Ґ', 'ґ', 'Д', 'д', 'Е', 'е',
@@ -55,6 +56,9 @@ class LibraryManager
     #               'Ф' => 'F', 'ф' => 'f', 'Х' => 'Kh', 'х' => 'kh', 'Ц' => 'Ts', 'ц' => 'ts',
     #               'Ч' => 'Ch', 'ч' => 'ch', 'Ш' => 'Sh', 'ш' => 'sh', 'Щ' => 'Shch', 'щ' => 'shch',
     #               'Ь' => '', 'ь' => '', 'Ю' => 'Yu', 'ю' => 'iu', 'Я' => 'Ya', 'я' => 'ia'}
+=======
+  def transliterate author
+>>>>>>> upstream/master
 
     for i in 0..ukrLetters.length-1
       translit = translit.gsub(ukrLetters[i], engLetters[i])
