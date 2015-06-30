@@ -1,3 +1,13 @@
+require 'active_support/all'
+require 'pry'
+
+require './library_manager.rb'
+require './author.rb'
+require './book.rb'
+require './published_book.rb'
+require './reader.rb'
+require './reader_with_book.rb'
+
 class LibraryManager
 
   attr_accessor :reader_with_book, :issue_datetime
@@ -74,9 +84,15 @@ def transliterate author
     return res.round
   end
 
-  # this is a placeholder. Just ignore it for the moment.
   def email_notification_params
+      {
+        penalty: "some code",
+        hours_to_deadline: "some code",
+      }
+  end
 
+  def email_notification
+    #use email_notification_params
   end
 
 end
