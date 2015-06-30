@@ -17,8 +17,8 @@ class LibraryManager
   end
 
   def penalty_for_hour published_book # reader_with_book.book
-    return ( 0.00007 *  (DateTime.now.year - 1 - published_book.published_at) * published_book.price) + (0.000003 * published_book.pages_quantity * published_book.price) + (0.0005 * published_book.price)
-    # published_book.price * ( 0,00007 * (DateTime.now.year - 1 - published_book.published_at) + 0,000003 * published_book.pages_quantity + 0,0005)
+    #return ( 0.00007 *  (DateTime.now.year - 1 - published_book.published_at) * published_book.price) + (0.000003 * published_book.pages_quantity * published_book.price) + (0.0005 * published_book.price)
+    return published_book.price * ( 0.00007 * (DateTime.now.year - 1 - published_book.published_at) + 0.000003 * published_book.pages_quantity + 0.0005)
   end
 
   def penalty
@@ -36,12 +36,12 @@ class LibraryManager
   end
 
   def days_to_buy
-    penaltyHours = price / penalty_for_hour(reader_with_book.book)
+    penaltyHours = reader_with_book.book.price / penalty_for_hour(reader_with_book.book)
     return (penaltyHours / 24).round
   end
 
 def transliterate author
-    translit = author
+    translit = author.name
     ukrLetters = ['А', 'а', 'Б', 'б', 'В', 'в', 'Г', 'г', 'Ґ', 'ґ', 'Д', 'д', 'Е', 'е',
                   'Є', 'є', 'Ж', 'ж', 'З', 'з', 'И', 'и', 'І', 'і', 'Ї', 'ї', 'Й', 'й',
                   'К', 'к', 'Л', 'л', 'М', 'м', 'Н', 'н', 'О', 'о', 'П', 'п', 'Р', 'р',
@@ -66,7 +66,7 @@ def transliterate author
     #               'Ь' => '', 'ь' => '', 'Ю' => 'Yu', 'ю' => 'iu', 'Я' => 'Ya', 'я' => 'ia'}
 
     for i in 0..ukrLetters.length-1
-      translit = translit.gsub(ukrLetters[i], engLetters[i])
+      translit.gsub!(ukrLetters[i], engLetters[i])
     end
     return translit
   end
@@ -85,13 +85,18 @@ def transliterate author
 
   def email_notification_params
       {
-        penalty: "some code",
-        hours_to_deadline: "some code",
+        penalty: penalty_for_hour(reader_with_book.book),
+        hours_to_deadline: ((issue_datetime - DateTime.now).to_f * 24).round,
       }
   end
 
   def email_notification
     #use email_notification_params
+    return "Hello, #{reader_with_book.name}!
+
+You should return a book #{reader_with_book.book.title} authored by #{reader_with_book.book.author.name} in #{email_notification_params[:hours_to_deadline]} hours.
+Otherwise you will be charged #{email_notification_params[:penalty]} per hour.
+"
   end
 
 end
