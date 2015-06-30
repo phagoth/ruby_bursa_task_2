@@ -1,3 +1,5 @@
+require './library_manager.rb'
+
 describe LibraryManager do
 
   let(:leo_tolstoy) do
