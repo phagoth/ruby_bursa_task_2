@@ -14,7 +14,7 @@ describe LibraryManager do
   let(:oscar_wilde) { Author.new(1854, 1900, 'Oscar Wilde') }
   let(:war_and_peace) { PublishedBook.new(leo_tolstoy, 'War and Peace', 1400, 3280, 1996) }
   let(:ivan_testenko) { ReaderWithBook.new('Ivan Testenko', 16, war_and_peace, 328, 1922) }
-  let(:manager) { LibraryManager.new(ivan_testenko, (DateTime.now.new_offset(0) - 2.days) }
+  let(:manager) { LibraryManager.new(ivan_testenko, (DateTime.now.new_offset(0) - 2.days)) }
 
   it 'should count penalty' do
     manager.penalty
@@ -22,7 +22,7 @@ describe LibraryManager do
 
   it 'should know if author can meet another author' do
     manager.could_meet_each_other? leo_tolstoy, oscar_wilde
-  end  
+  end
 
   it 'should count days to buy' do
     manager.days_to_buy
@@ -37,5 +37,5 @@ describe LibraryManager do
     manager.penalty_to_finish
   end
 
-  
+
 end

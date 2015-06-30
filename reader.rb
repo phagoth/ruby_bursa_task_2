@@ -6,5 +6,4 @@ class Reader
     @reding_speed = reading_speed
   end
 
-  def 
 end
