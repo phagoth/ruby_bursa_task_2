@@ -23,16 +23,19 @@ describe LibraryManager do
   end
 
   it 'should count days to buy' do
-    manager.days_to_buy
+    res = manager.days_to_buy
+    expect(res).to eq 4
   end
 
   it 'should transliterate ukrainian names' do
     ukrainan_author = Author.new(1856, 1916, 'Іван Франко')
-    manager.transliterate ukrainan_author
+    res = manager.transliterate ukrainan_author
+    expect(res).to eq 'Ivan Franko'
   end
 
   it 'should count penalty to finish' do
-    manager.penalty_to_finish
+    res = manager.penalty_to_finish
+    expect(res).to eq 3790
   end
 
   it 'should compose email notifications' do
@@ -40,7 +43,7 @@ describe LibraryManager do
 Hello, Ivan Testenko!
 
 You should return a book War and Peace authored by Leo Tolstoy in -48 hours.
-Otherwise you will be charged 16.24 per hour.
+Otherwise you will be charged 16.338 per hour.
 TEXT
   end
 

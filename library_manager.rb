@@ -17,8 +17,7 @@ class LibraryManager
   end
 
   def penalty_for_hour published_book # reader_with_book.book
-    #return ( 0.00007 *  (DateTime.now.year - 1 - published_book.published_at) * published_book.price) + (0.000003 * published_book.pages_quantity * published_book.price) + (0.0005 * published_book.price)
-    return published_book.price * ( 0.00007 * (DateTime.now.year - 1 - published_book.published_at) + 0.000003 * published_book.pages_quantity + 0.0005)
+    return published_book.price * ( 0.00007 * (DateTime.now.year - published_book.published_at) + 0.000003 * published_book.pages_quantity + 0.0005)
   end
 
   def penalty
@@ -53,21 +52,10 @@ def transliterate author
                   'S', 's', 'T', 't', 'U', 'u', 'F', 'f', 'Kh', 'kh', 'Ts', 'ts',
                   'Ch', 'ch', 'Sh', 'sh', 'Shch', 'shch', '', '', 'Yu', 'iu', 'Ya', 'ia']
 
-    # hashLetters = {'А' => 'A', 'а' => 'a', 'Б' => 'B', 'б' => 'b', 'В' => 'V', 'в' => 'v',
-    #               'Г' => 'H', 'г' => 'h', 'Ґ' => 'G', 'ґ' => 'g', 'Д' => 'D', 'д' => 'd',
-    #               'Е' => 'E', 'е' => 'e', 'Є' => 'Ye', 'є' => 'ie', 'Ж' => 'Zh', 'ж' => 'zh',
-    #               'З' => 'Z', 'з' => 'z', 'И' => 'Y', 'и' => 'y', 'І' => 'I', 'і' => 'i',
-    #               'Ї' => 'Yi', 'ї' => 'i', 'Й' => 'Y', 'й' => 'i', 'К' => 'K', 'к' => 'k',
-    #               'Л' => 'L', 'л' => 'l', 'М' => 'M', 'м' => 'm', 'Н' => 'N', 'н' => 'n',
-    #               'О' => 'O', 'о' => 'o', 'П' => 'P', 'п' => 'p', 'Р' => 'R', 'р' => 'r',
-    #               'С' => 'S', 'с' => 's', 'Т' => 'T', 'т' => 't', 'У' => 'U', 'у' => 'u',
-    #               'Ф' => 'F', 'ф' => 'f', 'Х' => 'Kh', 'х' => 'kh', 'Ц' => 'Ts', 'ц' => 'ts',
-    #               'Ч' => 'Ch', 'ч' => 'ch', 'Ш' => 'Sh', 'ш' => 'sh', 'Щ' => 'Shch', 'щ' => 'shch',
-    #               'Ь' => '', 'ь' => '', 'Ю' => 'Yu', 'ю' => 'iu', 'Я' => 'Ya', 'я' => 'ia'}
-
     for i in 0..ukrLetters.length-1
       translit.gsub!(ukrLetters[i], engLetters[i])
     end
+
     return translit
   end
 
